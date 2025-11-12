@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thư 20/11</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fae1dd;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #line1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        #letterText {
+            font-size: 20px;
+            line-height: 1.5;
+            max-width: 800px;
+            margin-bottom: 30px;
+        }
+        #letterVideo {
+            display: none;
+            width: 560px;
+            max-width: 90%;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="line1">Gửi thầy cô trường THPT Kiên Lương,</div>
+    <div id="letterText"></div>
+
+    <video id="letterVideo" controls>
+        <source src="video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <script>
+        const line1 = document.getElementById('line1');
+        const letterText = document.getElementById('letterText');
+        const video = document.getElementById('letterVideo');
+
+        const textContent = "Nhân ngày 20/11, tập thể lớp 10A1 chúng em xin gửi lời cảm ơn đến thầy cô vì đã đồng hành, chỉ dẫn và luôn kiên nhẫn với chúng em. Chúc thầy cô luôn nhiều sức khỏe, nhiều niềm vui và mãi giữ ngọn lửa yêu nghề.";
+
+        // Hiển thị dòng đầu tiên
+        setTimeout(() => {
+            line1.style.opacity = 1;
+            startTyping();
+        }, 500);
+
+        // Hàm gõ chữ từng ký tự
+        let index = 0;
+        function startTyping() {
+            let typingInterval = setInterval(() => {
+                if (index < textContent.length) {
+                    letterText.textContent += textContent[index];
+                    index++;
+                } else {
+                    clearInterval(typingInterval);
+                    // Khi chữ xuất hiện xong thì hiển thị và phát video
+                    video.style.display = 'block';
+                    video.play();
+                }
+            }, 50); // thời gian giữa các ký tự (ms), bạn có thể tăng nếu muốn chậm hơn
+        }
+    </script>
+
+</body>
+</html>
